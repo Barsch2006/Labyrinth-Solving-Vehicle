@@ -1,18 +1,21 @@
-from Logger.Logger import Logger
 from time import sleep
-
+from Logger.Logger import Logger
+from Motor import Motor
 
 class Vehicle:
 
     def __init__(self) -> None:
-        # @info Position of Vehicle in Virtual Coordination_System
-        self.x: int = 0
-        self.y:int = 0
+        self.sensores: list = []
+        self.motorR: Motor = Motor()
+        self.motorL : Motor = Motor()
     
     def turn90Left(self) -> None:
         # todo
         try:
-            return
+            self.motorR = 2
+            self.motorL = 1
+            sleep(1)
+            self.stop()
         except Exception as err:
             logger = Logger(None)
             logger.print_err(err)
@@ -20,35 +23,33 @@ class Vehicle:
     def turn90Right(self) -> None:
         # todo
         try:
-            return
-        except Exception as err:
-            logger = Logger(None)
-            logger.print_err(err)
-    
-    def turn180(self) -> None:
-        # todo
-        try:
-            return
+            self.motorR = 1
+            self.motorL = 2
+            sleep(1)
+            self.stop()
         except Exception as err:
             logger = Logger(None)
             logger.print_err(err)
 
     def driveForwards(self) -> None:
-       # todo
         try:
-            return
+            self.motorL.setPower(3)
+            self.motorR.setPower(3)
         except Exception as err:
             logger = Logger(None)
             logger.print_err(err)
     
     def stop(self) -> None:
-        # todo
-        return
+        self.motorL.setPower(0)
+        self.motorR.setPower(0)
     
     def getAllSensorData(self) -> dict: 
         # todo
         try:
-            return
+            output: dict = {}
+            for index in range(self.sensores):
+                output[index] = self.sensores[index].getData()
+            return output
         except Exception as err:
             logger = Logger(None)
             logger.print_err(err)
@@ -56,7 +57,7 @@ class Vehicle:
     def getSensorDataByID(self, id: int) -> dict:
        # todo
         try:
-            return
+            return self.sensores[id].getData()
         except Exception as err:
             logger = Logger(None)
             logger.print_err(err)
