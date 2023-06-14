@@ -4,10 +4,10 @@ from Motor import Motor
 
 class Vehicle:
 
-    def __init__(self) -> None:
+    def __init__(self, motorR, motorL) -> None:
         self.sensores: list = []
-        self.motorR: Motor = Motor()
-        self.motorL : Motor = Motor()
+        self.motorR: Motor = Motor(motorR)
+        self.motorL : Motor = Motor(motorL)
     
     def turn90Left(self) -> None:
         # todo
