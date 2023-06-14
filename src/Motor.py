@@ -6,6 +6,7 @@ class Motor:
 
     def setPower(self, level: int):
         self.power = level
+        self.updatePower()
     
     def updatePower(self):
         # todo
