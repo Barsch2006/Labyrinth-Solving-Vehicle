@@ -1,3 +1,5 @@
+import pigpio
+
 class Motor:
     def __init__(self, pin, max_value):
         self.pin = pin

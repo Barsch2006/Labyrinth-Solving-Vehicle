@@ -4,10 +4,10 @@ from Motor import Motor
 
 class Vehicle:
 
-    def __init__(self) -> None:
+    def __init__(self, motorR, motorL) -> None:
         self.sensores: list = []
-        self.motorR: Motor = Motor()
-        self.motorL : Motor = Motor()
+        self.motorR: Motor = Motor(motorR)
+        self.motorL : Motor = Motor(motorL)
     
     def turn90Left(self) -> None:
         # todo
@@ -18,7 +18,7 @@ class Vehicle:
             self.stop()
         except Exception as err:
             logger = Logger(None)
-            logger.print_err(err)
+            logger.log_err(err)
 
     def turn90Right(self) -> None:
         # todo
@@ -29,7 +29,7 @@ class Vehicle:
             self.stop()
         except Exception as err:
             logger = Logger(None)
-            logger.print_err(err)
+            logger.log_err(err)
 
     def driveForwards(self) -> None:
         try:
@@ -37,7 +37,7 @@ class Vehicle:
             self.motorR.setPower(3)
         except Exception as err:
             logger = Logger(None)
-            logger.print_err(err)
+            logger.log_err(err)
     
     def stop(self) -> None:
         self.motorL.setPower(0)
@@ -52,7 +52,7 @@ class Vehicle:
             return output
         except Exception as err:
             logger = Logger(None)
-            logger.print_err(err)
+            logger.log_err(err)
     
     def getSensorDataByID(self, id: int) -> dict:
        # todo
@@ -60,4 +60,4 @@ class Vehicle:
             return self.sensores[id].getData()
         except Exception as err:
             logger = Logger(None)
-            logger.print_err(err)
+            logger.log_err(err)

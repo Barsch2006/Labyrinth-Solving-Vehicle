@@ -25,6 +25,7 @@ class Logger:
         f1.write(f"[{mode.upper()}] {str(parser.dateutil.parser.parse(time.asctime())).split(' ')[0]} {msg}\n")
         f1.close()
     
-    def print_err(self, err: str) -> None:
+    def log_err(self, err: str) -> None:
+        self.log("ERROR", err)
         print(f"\033[91m{err}")
         print("\033[0m")
